@@ -15,6 +15,42 @@ Cross-platform Flutter desktop version of Proxyman Script Generator.
 - Use built-in script snippets.
 - Persist desktop settings.
 
+## About
+
+### Why this app?
+
+As an iOS developer working with APIs daily, I often need to mock server responses for testing. Manually writing JavaScript mock scripts for Proxyman was tedious and error-prone. This tool automates the process - just paste your JSON and get a ready-to-use script instantly.
+
+### Key Features
+
+- **Fast & Simple**: Paste JSON → Get script → Copy to Proxyman
+- **Cross-Platform**: Works on macOS and Windows
+- **Offline**: No internet required, runs locally
+- **Private**: Your data stays on your machine
+- **Dark Mode**: Easy on the eyes during long coding sessions
+
+### Version
+
+Current: **1.0.0**
+
+### Tech Stack
+
+| Component | Technology |
+|-----------|------------|
+| Framework | Flutter |
+| Language | Dart |
+| State | Riverpod |
+| Storage | SharedPreferences |
+
+### Credits
+
+- [Proxyman](https://proxyman.io/) - The amazing network debugging tool for macOS
+- [Flutter](https://flutter.dev/) - UI toolkit for cross-platform apps
+
+### Support
+
+Found a bug or have a feature request? Submit feedback through the app or create an issue on GitHub.
+
 ## Development
 
 ```bash
