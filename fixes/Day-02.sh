@@ -1,7 +1,6 @@
 #!/bin/bash
 # Day 02 - Fix Unhandled Async in initState
-
-# The issue: state.initialize() is async but not awaited
+# Issue #2: state.initialize() is async but not awaited
 # Fix: Add proper async initialization with loading state
 
 cat > /tmp/fix_init_state.patch << 'EOF'

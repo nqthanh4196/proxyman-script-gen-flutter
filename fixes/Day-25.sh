@@ -1,7 +1,6 @@
 #!/bin/bash
 # Day 25 - Add Keyboard Shortcuts
-
-# The issue: No keyboard shortcuts for common actions
+# Issue #25: No keyboard shortcuts for common actions
 # Fix: Add Shortcuts and Actions widgets
 
 echo "Fix for issue #25 requires manual review - add keyboard shortcuts"

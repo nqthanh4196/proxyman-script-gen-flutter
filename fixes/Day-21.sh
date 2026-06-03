@@ -1,7 +1,6 @@
 #!/bin/bash
 # Day 21 - Extract Magic Numbers to Constants
-
-# The issue: Multiple magic numbers in app.dart
+# Issue #21: Multiple magic numbers in app.dart
 # Fix: Extract to named constants
 
 echo "Fix for issue #21 requires manual review - extract magic numbers"

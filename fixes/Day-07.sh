@@ -1,7 +1,6 @@
 #!/bin/bash
 # Day 07 - Add Debouncing on Settings
-
-# The issue: onChanged calls updateSettings on every keystroke
+# Issue #7: onChanged calls updateSettings on every keystroke
 # Fix: Add debouncing using Timer
 
 echo "Fix for issue #7 requires manual review - add debouncing to settings TextFormField"

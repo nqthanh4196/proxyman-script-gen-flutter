@@ -1,7 +1,6 @@
 #!/bin/bash
 # Day 19 - Fix ID Collision Risk
-
-# The issue: microsecondsSinceEpoch could collide
+# Issue #19: microsecondsSinceEpoch could collide
 # Fix: Use Uuid package or combine with random
 
 echo "Fix for issue #19 requires manual review of models.dart"

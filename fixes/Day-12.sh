@@ -1,7 +1,6 @@
 #!/bin/bash
 # Day 12 - Fix Synchronous File I/O
-
-# The issue: File operations block main thread
+# Issue #12: File operations block main thread
 # Fix: Use isolates or compute() for file operations
 
 echo "Fix for issue #12 requires manual review of storage.dart"

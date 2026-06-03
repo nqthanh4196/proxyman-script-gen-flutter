@@ -1,7 +1,6 @@
 #!/bin/bash
 # Day 04 - Fix Broken Widget Test
-
-# The issue: Test references MyApp which doesn't exist
+# Issue #4: Test references MyApp which doesn't exist
 # Fix: Rewrite test for ProxymanScriptGenApp
 
 cat > test/widget_test.dart << 'EOF'

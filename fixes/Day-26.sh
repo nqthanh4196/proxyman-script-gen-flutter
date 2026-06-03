@@ -1,7 +1,6 @@
 #!/bin/bash
 # Day 26 - Add Loading Indicator
-
-# The issue: No visual feedback during script generation
+# Issue #26: No visual feedback during script generation
 # Fix: Add loading spinner during async operations
 
 echo "Fix for issue #26 requires manual review - add loading indicator"

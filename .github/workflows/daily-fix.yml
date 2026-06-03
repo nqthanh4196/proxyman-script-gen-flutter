@@ -47,12 +47,25 @@ jobs:
           chmod +x ./scripts/apply-fix.sh
           ./scripts/apply-fix.sh ${{ steps.day.outputs.number }} ${{ steps.day.outputs.padded }}
 
+      - name: Get fix description
+        if: steps.check.outputs.skip == 'false'
+        id: description
+        run: |
+          DAY=${{ steps.day.outputs.padded }}
+          FIX_FILE="fixes/Day-${DAY}.sh"
+          if [ -f "$FIX_FILE" ]; then
+            # Extract description from script comment (format: # Day XX - Title)
+            DESC=$(head -3 "$FIX_FILE" | grep "^# Day" | sed 's/^# Day [0-9]* - //')
+            echo "message=🔧 Day ${DAY}: ${DESC}" >> $GITHUB_OUTPUT
+          else
+            echo "message=🔧 Day ${DAY}: Code fix applied" >> $GITHUB_OUTPUT
+          fi
+
       - name: Commit and push
         if: steps.check.outputs.skip == 'false'
         run: |
           git config user.name "nqthanh4196"
           git config user.email "nqthanh4196@users.noreply.github.com"
-          DAY=${{ steps.day.outputs.padded }}
           git add .
-          git commit -m "🔧 Day ${DAY}: Code fix applied"
+          git commit -m "${{ steps.description.outputs.message }}"
           git push
