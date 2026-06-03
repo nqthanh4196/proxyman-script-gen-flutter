@@ -1,0 +1,58 @@
+name: Daily Code Fix
+
+on:
+  schedule:
+    - cron: '0 5 * * *'  # 12:00 PM Vietnam time (UTC+7)
+  repository_dispatch:
+    types: [daily-fix]
+  workflow_dispatch:
+    inputs:
+      day:
+        description: 'Day number to fix (1-30)'
+        required: false
+        type: number
+
+jobs:
+  fix-issue:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Determine next fix day
+        id: day
+        run: |
+          if [ -n "${{ github.event.inputs.day }}" ]; then
+            NEXT=${{ github.event.inputs.day }}
+          else
+            CURRENT=$(ls -d fixes/Day-* 2>/dev/null | wc -l | tr -d ' ')
+            NEXT=$((CURRENT + 1))
+          fi
+          echo "number=$NEXT" >> $GITHUB_OUTPUT
+          echo "padded=$(printf '%02d' $NEXT)" >> $GITHUB_OUTPUT
+
+      - name: Check if all completed
+        id: check
+        run: |
+          if [ ${{ steps.day.outputs.number }} -gt 30 ]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Apply fix
+        if: steps.check.outputs.skip == 'false'
+        run: |
+          chmod +x ./scripts/apply-fix.sh
+          ./scripts/apply-fix.sh ${{ steps.day.outputs.number }} ${{ steps.day.outputs.padded }}
+
+      - name: Commit and push
+        if: steps.check.outputs.skip == 'false'
+        run: |
+          git config user.name "nqthanh4196"
+          git config user.email "nqthanh4196@users.noreply.github.com"
+          DAY=${{ steps.day.outputs.padded }}
+          git add .
+          git commit -m "🔧 Day ${DAY}: Code fix applied"
+          git push
